@@ -485,12 +485,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Built with modern web technologies
 - Designed for enterprise innovation management
 
-## 📞 Support
-
-For questions or support:
-- 📧 Email: support@company.com
-- 📖 Documentation: [http://localhost:3000/manual.html](http://localhost:3000/manual.html)
-- 🐛 Issues: [GitHub Issues](https://github.com/yourcompany/idea-incubator/issues)
 
 ---
 
