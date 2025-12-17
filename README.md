@@ -8,7 +8,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
 [![Prisma](https://img.shields.io/badge/Prisma-5.22-2D3748)](https://www.prisma.io/)
 
-![Idea Incubator Banner](public/screenshots/marketing-banner.png)
+
 
 ## 📚 Table of Contents
 
