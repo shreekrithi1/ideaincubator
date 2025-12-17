@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idea Incubator - User Manual</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #3730a3;
+            --secondary: #7c3aed;
+            --accent: #a5b4fc;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.1);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1e1b4b 100%);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border-radius: 24px;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border);
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent) 0%, #c084fc 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .header .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .demo-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Navigation */
+        .nav {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            overflow-x: auto;
+            padding: 1rem;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .nav-item {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+
+        .nav-item:hover {
+            background: rgba(79, 70, 229, 0.2);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-color: transparent;
+        }
+
+        /* Content Sections */
+        .section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 32px rgba(79, 70, 229, 0.2);
+        }
+
+        .card h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent) 0%, #c084fc 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            color: var(--accent);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .card ul,
+        .card ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card li {
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            background: rgba(79, 70, 229, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .feature-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Steps */
+        .steps {
+            counter-reset: step;
+        }
+
+        .step {
+            position: relative;
+            padding-left: 4rem;
+            margin-bottom: 2rem;
+            counter-increment: step;
+        }
+
+        .step::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .step h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .step p {
+            color: var(--text-muted);
+        }
+
+        /* Code Block */
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            color: #a5b4fc;
+        }
+
+        /* Role Badges */
+        .role-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .role-employee {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+        }
+
+        .role-moderator {
+            background: rgba(139, 92, 246, 0.2);
+            color: #a78bfa;
+        }
+
+        .role-executive {
+            background: rgba(236, 72, 153, 0.2);
+            color: #f472b6;
+        }
+
+        .role-admin {
+            background: rgba(234, 179, 8, 0.2);
+            color: #fbbf24;
+        }
+
+        /* Alert Boxes */
+        .alert {
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: #3b82f6;
+            color: #93c5fd;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: var(--success);
+            color: #6ee7b7;
+        }
+
+        .alert-warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: var(--warning);
+            color: #fcd34d;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th,
+        td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        td {
+            color: var(--text-muted);
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav {
+                flex-direction: column;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Screenshots */
+        .screenshot {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin: 1.5rem 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s;
+        }
+
+        .screenshot:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 48px rgba(79, 70, 229, 0.3);
+        }
+
+        .screenshot-caption {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💡 Idea Incubator</h1>
+            <p class="subtitle">Transform innovative concepts into reality. Where history's giants inspire tomorrow's
+                pioneers.</p>
+            <span class="demo-badge">USER MANUAL</span>
+        </div>
+
+        <nav class="nav">
+            <div class="nav-item active" onclick="showSection('overview')">Overview</div>
+            <div class="nav-item" onclick="showSection('getting-started')">Getting Started</div>
+            <div class="nav-item" onclick="showSection('roles')">User Roles</div>
+            <div class="nav-item" onclick="showSection('workflow')">Workflow</div>
+            <div class="nav-item" onclick="showSection('features')">Features</div>
+            <div class="nav-item" onclick="showSection('jira')">JIRA Integration</div>
+            <div class="nav-item" onclick="showSection('faq')">FAQ</div>
+        </nav>
+
+        <!-- Overview Section -->
+        <div id="overview" class="section active">
+            <div class="card">
+                <h2>📚 System Overview</h2>
+                <p>Idea Incubator is an enterprise innovation management platform that streamlines the process of
+                    collecting, evaluating, and implementing employee ideas. The system provides a complete pipeline
+                    from idea submission to JIRA story creation.</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">✨</div>
+                        <div class="feature-title">Submit Ideas</div>
+                        <div class="feature-desc">Share your innovative concepts with detailed descriptions and
+                            categorization</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🗳️</div>
+                        <div class="feature-desc">Vote on ideas from colleagues and see trending innovations</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <div class="feature-title">Moderation</div>
+                        <div class="feature-desc">Review and approve ideas for executive consideration</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💼</div>
+                        <div class="feature-title">Executive Review</div>
+                        <div class="feature-desc">Strategic decision-making with SWOT analysis and digital signatures
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <div class="feature-title">Analytics</div>
+                        <div class="feature-desc">Real-time metrics and conversion funnel tracking</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔗</div>
+                        <div class="feature-title">JIRA Integration</div>
+                        <div class="feature-desc">Automatic story creation when ideas are approved</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Getting Started Section -->
+        <div id="getting-started" class="section">
+            <div class="card">
+                <h2>🚀 Getting Started</h2>
+
+                <h3>Logging In</h3>
+                <p>Access the system at the login page where you can:</p>
+                <ul>
+                    <li>Enter your email and password for standard login</li>
+                    <li>Use test account shortcuts for demo purposes</li>
+                    <li>Select your role: Employee, Moderator, Executive, or Admin</li>
+                </ul>
+
+                <img src="/screenshots/login-page.png" alt="Login Page" class="screenshot">
+                <p class="screenshot-caption">Login page with test account shortcuts for each role</p>
+
+                <div class="alert alert-info">
+                    <strong>💡 Test Accounts:</strong> Click on any role button (Employee, Moderator, Executive, Admin)
+                    to instantly log in with that role for testing purposes.
+                </div>
+
+                <h3>Main Dashboard</h3>
+                <p>After logging in, you'll see the Innovation Pipeline with all submitted ideas:</p>
+
+                <img src="/screenshots/main-dashboard.png" alt="Main Dashboard" class="screenshot">
+                <p class="screenshot-caption">Innovation Pipeline showing all ideas with voting, status, and trending
+                    sidebar</p>
+
+                <h3>First Steps</h3>
+                <div class="steps">
+                    <div class="step">
+                        <h4>Explore the Dashboard</h4>
+                        <p>After logging in, you'll see the Innovation Pipeline with all submitted ideas, their status,
+                            and voting counts.</p>
+                    </div>
+                    <div class="step">
+                        <h4>Submit Your First Idea</h4>
+                        <p>Click the "Submit New Idea" button to share your innovative concept with the team.</p>
+                    </div>
+                    <div class="step">
+                        <h4>Vote on Ideas</h4>
+                        <p>Browse ideas from colleagues and vote on the ones you find most valuable.</p>
+                    </div>
+                    <div class="step">
+                        <h4>Track Progress</h4>
+                        <p>Monitor your ideas as they move through the pipeline from submission to implementation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Roles Section -->
+        <div id="roles" class="section">
+            <div class="card">
+                <h2>👥 User Roles & Permissions</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Role</th>
+                            <th>Permissions</th>
+                            <th>Key Features</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="role-badge role-employee">Employee</span></td>
+                            <td>
+                                • Submit ideas<br>
+                                • Vote on ideas<br>
+                                • View all ideas<br>
+                                • Track own submissions
+                            </td>
+                            <td>
+                                • Idea submission form<br>
+                                • Voting system<br>
+                                • Trending ideas sidebar
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="role-badge role-moderator">Moderator</span></td>
+                            <td>
+                                • All Employee permissions<br>
+                                • Review submissions<br>
+                                • Approve/reject ideas<br>
+                                • Access Control Tower
+                            </td>
+                            <td>
+                                • Moderation dashboard<br>
+                                • Bulk actions<br>
+                                • Review queue management
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="role-badge role-executive">Executive</span></td>
+                            <td>
+                                • All Employee permissions<br>
+                                • Access Boardroom<br>
+                                • Approve budgets<br>
+                                • Digital signatures<br>
+                                • SWOT analysis
+                            </td>
+                            <td>
+                                • Executive dashboard<br>
+                                • Strategic review tools<br>
+                                • Budget authorization<br>
+                                • JIRA story creation
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="role-badge role-admin">Admin</span></td>
+                            <td>
+                                • All permissions<br>
+                                • System configuration<br>
+                                • JIRA integration setup<br>
+                                • Analytics access<br>
+                                • User management
+                            </td>
+                            <td>
+                                • Mission Control dashboard<br>
+                                • Integration settings<br>
+                                • Real-time analytics<br>
+                                • Conversion funnel
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Workflow Section -->
+        <div id="workflow" class="section">
+            <div class="card">
+                <h2>🔄 Idea Lifecycle Workflow</h2>
+
+                <h3>Stage 1: Submission</h3>
+                <p><span class="role-badge role-employee">Employee</span></p>
+                <ul>
+                    <li>Employee submits an idea with title, description, category, and t-shirt size</li>
+                    <li>Idea enters "Pending Moderation" status</li>
+                    <li>Other employees can view and vote on the idea</li>
+                </ul>
+
+                <h3>Stage 2: Moderation</h3>
+                <p><span class="role-badge role-moderator">Moderator</span></p>
+                <ul>
+                    <li>Moderator reviews idea in Control Tower</li>
+                    <li>Can approve (moves to Executive Review) or reject (returns to draft)</li>
+                    <li>Provides feedback and comments</li>
+                </ul>
+
+                <h3>Stage 3: Executive Review</h3>
+                <p><span class="role-badge role-executive">Executive</span></p>
+                <ul>
+                    <li>Executive views idea in The Boardroom</li>
+                    <li>Analyzes SWOT (Strengths, Weaknesses, Opportunities, Threats)</li>
+                    <li>Reviews business value score and community votes</li>
+                    <li>Authorizes budget with digital signature</li>
+                </ul>
+
+                <h3>Stage 4: Development</h3>
+                <p><span class="role-badge role-admin">System</span></p>
+                <ul>
+                    <li>Automatic JIRA story creation</li>
+                    <li>Idea status changes to "In Development"</li>
+                    <li>JIRA ticket ID linked to idea</li>
+                    <li>Development team can begin implementation</li>
+                </ul>
+
+                <div class="alert alert-success">
+                    <strong>✅ Success Path:</strong> Draft → Pending Moderation → Executive Review → In Development →
+                    Completed
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div id="features" class="section">
+            <div class="card">
+                <h2>⚡ Key Features</h2>
+
+                <h3>1. Innovation Pipeline</h3>
+                <p>The main dashboard displays all ideas in a comprehensive table view:</p>
+                <ul>
+                    <li><strong>ID:</strong> Unique identifier for each idea</li>
+                    <li><strong>Initiative:</strong> Idea title and description</li>
+                    <li><strong>Owner:</strong> Submitter information with avatar</li>
+                    <li><strong>Votes:</strong> Community voting count</li>
+                    <li><strong>ROI Score:</strong> Business value assessment</li>
+                    <li><strong>Stage:</strong> Current status in the pipeline</li>
+                    <li><strong>Actions:</strong> Edit, view details, or delete</li>
+                </ul>
+
+                <h3>2. Voting System</h3>
+                <p>Employees can vote on ideas to show support:</p>
+                <ul>
+                    <li>One vote per user per idea</li>
+                    <li>Vote count displayed prominently</li>
+                    <li>Trending ideas shown in sidebar</li>
+                    <li>Influences prioritization</li>
+                </ul>
+
+                <h3>3. The Boardroom</h3>
+                <p>Executive decision-making interface with:</p>
+                <ul>
+                    <li><strong>SWOT Analysis:</strong> AI-powered strategic assessment</li>
+                    <li><strong>Digital Signatures:</strong> Type "APPROVE" to authorize</li>
+                    <li><strong>Budget Allocation:</strong> Assign resources to approved ideas</li>
+                    <li><strong>Priority Metrics:</strong> High-priority idea tracking</li>
+                </ul>
+
+                <img src="/screenshots/boardroom-swot.png" alt="Boardroom SWOT Analysis" class="screenshot">
+                <p class="screenshot-caption">Boardroom view with SWOT analysis and strategic decision tools</p>
+
+                <img src="/screenshots/boardroom-signature.png" alt="Digital Signature" class="screenshot">
+                <p class="screenshot-caption">Digital signature modal for budget authorization</p>
+
+                <div class="alert alert-warning">
+                    <strong>⚠️ Important:</strong> Executive approval triggers automatic JIRA story creation. Ensure
+                    JIRA integration is configured before authorizing budgets.
+                </div>
+
+                <h3>4. Control Tower (Moderation)</h3>
+                <p>Moderator dashboard for reviewing submissions:</p>
+                <ul>
+                    <li>Queue of pending ideas</li>
+                    <li>Approve or reject with comments</li>
+                    <li>Bulk actions for efficiency</li>
+                    <li>Status tracking</li>
+                </ul>
+
+                <img src="/screenshots/moderator-dashboard.png" alt="Control Tower" class="screenshot">
+                <p class="screenshot-caption">Control Tower showing moderation queue with pending ideas</p>
+
+                <h3>5. Mission Control (Admin)</h3>
+                <p>Comprehensive analytics and system management:</p>
+                <ul>
+                    <li><strong>Real-time Metrics:</strong> Active users, submissions, approvals</li>
+                    <li><strong>Conversion Funnel:</strong> Track idea progression rates</li>
+                    <li><strong>Integration Settings:</strong> Configure JIRA connection</li>
+                    <li><strong>Attribution:</strong> User contribution tracking</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- JIRA Integration Section -->
+        <div id="jira" class="section">
+            <div class="card">
+                <h2>🔗 JIRA Integration Setup</h2>
+
+                <p>The system automatically creates JIRA stories when executives approve ideas. Follow these steps to
+                    configure the integration:</p>
+
+                <h3>Prerequisites</h3>
+                <ul>
+                    <li>JIRA Cloud account</li>
+                    <li>Project with "Story" issue type enabled</li>
+                    <li>API token from Atlassian</li>
+                    <li>Admin role in Idea Incubator</li>
+                </ul>
+
+                <h3>Configuration Steps</h3>
+                <div class="steps">
+                    <div class="step">
+                        <h4>Generate API Token</h4>
+                        <p>Visit <a href="https://id.atlassian.com/manage-profile/security/api-tokens" target="_blank"
+                                style="color: var(--primary);">Atlassian Account Settings</a> and create a new API
+                            token. Copy it immediately as it won't be shown again.</p>
+                    </div>
+                    <div class="step">
+                        <h4>Access Integration Settings</h4>
+                        <p>Log in as Admin → Navigate to Mission Control → Click "Settings" tab</p>
+                    </div>
+                    <div class="step">
+                        <h4>Enter JIRA Configuration</h4>
+                        <p>Fill in the following fields:</p>
+                        <ul>
+                            <li><strong>JIRA Instance URL:</strong> https://yourcompany.atlassian.net</li>
+                            <li><strong>Project Key:</strong> Your project key (e.g., INNO, IDEA)</li>
+                            <li><strong>Email Address:</strong> Your JIRA account email</li>
+                            <li><strong>API Token:</strong> Paste the token from step 1</li>
+                        </ul>
+                    </div>
+                    <div class="step">
+                        <h4>Save and Test</h4>
+                        <p>Click "Save Configuration" and approve a test idea to verify the integration works correctly.
+                        </p>
+                    </div>
+                </div>
+
+                <h3>What Gets Created in JIRA</h3>
+                <p>When an executive authorizes a budget, the system creates a JIRA story with:</p>
+                <ul>
+                    <li><strong>Summary:</strong> Idea title</li>
+                    <li><strong>Description:</strong> Full idea description with metadata</li>
+                    <li><strong>Submitter:</strong> Original idea author</li>
+                    <li><strong>Category:</strong> Product, Process, or Culture</li>
+                    <li><strong>Business Value Score:</strong> ROI assessment</li>
+                    <li><strong>T-Shirt Size:</strong> Effort estimate (S, M, L, XL)</li>
+                    <li><strong>Labels:</strong> innovation, idea-incubator, category tag</li>
+                </ul>
+
+                <div class="alert alert-info">
+                    <strong>💡 Demo Mode:</strong> If JIRA is not configured, the system creates mock ticket IDs
+                    (DEMO-XXXX) so you can still test the workflow.
+                </div>
+
+                <h3>Troubleshooting</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Issue</th>
+                            <th>Solution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SYNC-FAILED ticket ID</td>
+                            <td>Check JIRA configuration in Admin settings. Verify API token is valid and project key
+                                exists.</td>
+                        </tr>
+                        <tr>
+                            <td>401 Unauthorized</td>
+                            <td>API token expired or incorrect. Generate a new token and update settings.</td>
+                        </tr>
+                        <tr>
+                            <td>400 Bad Request</td>
+                            <td>Invalid project key or issue type not available. Verify project settings in JIRA.</td>
+                        </tr>
+                        <tr>
+                            <td>DEMO-XXXX ticket ID</td>
+                            <td>JIRA not configured. This is expected behavior for testing without JIRA integration.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div id="faq" class="section">
+            <div class="card">
+                <h2>❓ Frequently Asked Questions</h2>
+
+                <h3>General Questions</h3>
+
+                <h4>Q: Who can submit ideas?</h4>
+                <p>A: All employees with an account can submit ideas. There's no limit to the number of ideas you can
+                    submit.</p>
+
+                <h4>Q: How do I vote on an idea?</h4>
+                <p>A: Click the vote button (thumbs up icon) next to any idea in the Innovation Pipeline. You can vote
+                    once per idea.</p>
+
+                <h4>Q: Can I edit my idea after submission?</h4>
+                <p>A: Yes, click the edit icon in the Actions column. However, once an idea moves past moderation,
+                    editing may be restricted.</p>
+
+                <h4>Q: What happens if my idea is rejected?</h4>
+                <p>A: Rejected ideas return to draft status. You'll receive feedback from the moderator and can revise
+                    and resubmit.</p>
+
+                <h3>Technical Questions</h3>
+
+                <h4>Q: Is JIRA integration required?</h4>
+                <p>A: No, the system works in demo mode without JIRA. However, for production use, JIRA integration
+                    enables automatic story creation.</p>
+
+                <h4>Q: How secure is the digital signature process?</h4>
+                <p>A: Digital signatures require typing "APPROVE" exactly and are logged with timestamps and user IDs
+                    for audit purposes.</p>
+
+                <h4>Q: Can I export idea data?</h4>
+                <p>A: Yes, admins can export data as CSV from the Mission Control dashboard.</p>
+
+                <h4>Q: What browsers are supported?</h4>
+                <p>A: Modern browsers including Chrome, Firefox, Safari, and Edge. Mobile browsers are also supported.
+                </p>
+
+                <h3>Role-Specific Questions</h3>
+
+                <h4>Q: As a moderator, how do I prioritize which ideas to review first?</h4>
+                <p>A: Ideas are sorted by submission date and vote count. Focus on high-vote ideas and time-sensitive
+                    submissions first.</p>
+
+                <h4>Q: As an executive, can I reject an idea after SWOT analysis?</h4>
+                <p>A: Yes, click the "Reject" button instead of "Authorize Budget". The idea returns to draft status.
+                </p>
+
+                <h4>Q: As an admin, how often should I check the analytics?</h4>
+                <p>A: Real-time analytics update continuously. Weekly reviews are recommended to track trends and
+                    conversion rates.</p>
+
+                <div class="alert alert-success">
+                    <strong>✅ Need More Help?</strong> Contact your system administrator or refer to the technical
+                    documentation for advanced features.
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2024 Idea Incubator. Transform innovative concepts into reality.</p>
+            <p style="margin-top: 1rem; font-size: 0.875rem;">
+                Where history's giants inspire tomorrow's pioneers.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active class from all nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Add active class to clicked nav item
+            event.target.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>

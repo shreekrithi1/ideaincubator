@@ -1,0 +1,278 @@
+.card {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 56rem;
+    /* max-w-4xl */
+    transition: box-shadow 0.2s;
+    margin-bottom: 2rem;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.metaBadge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.badge {
+    background: #e0e7ff;
+    /* blue-100 */
+    color: #1e40af;
+    /* blue-800 */
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.125rem 0.625rem;
+    border-radius: 0.25rem;
+}
+
+.idTag {
+    color: var(--text-light);
+    font-size: 0.75rem;
+}
+
+.title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.description {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.scoreBox {
+    text-align: right;
+}
+
+.scoreLabel {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.scoreValue {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.highScore {
+    color: #16a34a;
+    /* green-600 */
+}
+
+/* Stepper */
+.stepperContainer {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.stepperLineBg {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    /* h-1 in tw is 4px usually or 0.25rem */
+    height: 0.25rem;
+    background: #f3f4f6;
+    /* gray-100 */
+    border-radius: 0.25rem;
+    z-index: 0;
+}
+
+.stepperLineActive {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 0.25rem;
+    background: #2563eb;
+    /* blue-600 */
+    border-radius: 0.25rem;
+    z-index: 0;
+    transition: width 0.5s;
+}
+
+.stepItem {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stepIcon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid;
+    transition: all 0.2s;
+    background: white;
+}
+
+.stepCompleted {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: white;
+}
+
+.stepCurrent {
+    background: white;
+    border-color: #2563eb;
+    color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+}
+
+.stepPending {
+    background: white;
+    border-color: #d1d5db;
+    /* gray-300 */
+    color: #d1d5db;
+}
+
+.stepDot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: #d1d5db;
+}
+
+.stepLabel {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.labelCurrent {
+    color: #1d4ed8;
+}
+
+/* blue-700 */
+.labelCompleted {
+    color: #374151;
+}
+
+/* gray-700 */
+.labelPending {
+    color: #9ca3af;
+}
+
+/* gray-400 */
+
+
+/* Footer */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #f3f4f6;
+}
+
+.contributorInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.avatarStack {
+    display: flex;
+}
+
+.avatarStack img {
+    margin-right: -0.5rem;
+}
+
+.avatarStack img:last-child {
+    margin-right: 0;
+}
+
+.avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.dateLabel {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin-left: 0.5rem;
+}
+
+.actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.jiraBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #1d4ed8;
+    background: #eff6ff;
+    /* blue-50 */
+    border-radius: var(--radius-md);
+    transition: background 0.2s;
+}
+
+.jiraBtn:hover {
+    background: #dbeafe;
+    /* blue-100 */
+    text-decoration: none;
+}
+
+.launchBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: white;
+    background: #16a34a;
+    /* green-600 */
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: background 0.2s;
+}
+
+.launchBtn:hover {
+    background: #15803d;
+    /* green-700 */
+}

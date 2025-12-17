@@ -1,0 +1,34 @@
+.magicBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 0.5rem 0.75rem;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(124, 58, 237, 0.3);
+    transition: transform 0.1s, box-shadow 0.2s;
+}
+
+.magicBtn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 8px -1px rgba(124, 58, 237, 0.4);
+}
+
+.magicBtn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.magicBtn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    background: #cbd5e1;
+}
+
+.text {
+    /* visible text */
+}

@@ -1,0 +1,30 @@
+.bannerContainer {
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
+    margin-bottom: 0;
+    position: relative;
+    background: linear-gradient(135deg, #f5f1e8 0%, #e8dcc8 100%);
+    aspect-ratio: 16 / 3;
+}
+
+.bannerImage {
+    width: 100%;
+    height: 200%;
+    display: block;
+    object-fit: cover;
+    object-position: center 45%;
+    transform: translateY(-25%);
+}
+
+@media (max-width: 1024px) {
+    .bannerContainer {
+        aspect-ratio: 16 / 4;
+    }
+}
+
+@media (max-width: 768px) {
+    .bannerContainer {
+        aspect-ratio: 16 / 5;
+    }
+}

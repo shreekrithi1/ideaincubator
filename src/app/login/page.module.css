@@ -1,0 +1,414 @@
+.loginContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+.leftPanel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    background: linear-gradient(135deg,
+            rgba(79, 70, 229, 0.1) 0%,
+            rgba(139, 92, 246, 0.05) 50%,
+            rgba(236, 72, 153, 0.1) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.leftPanel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(79, 70, 229, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(236, 72, 153, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.brandingSection {
+    position: relative;
+    z-index: 1;
+    max-width: 500px;
+}
+
+.logoSection {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.demoBadge {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.heroContent {
+    margin-bottom: 3rem;
+}
+
+.iconWrapper {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.2), rgba(139, 92, 246, 0.2));
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.heroIcon {
+    color: #a5b4fc;
+}
+
+.heroTitle {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #a5b4fc 0%, #c084fc 50%, #f9a8d4 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.heroSubtitle {
+    font-size: 1.125rem;
+    color: rgba(203, 213, 225, 0.9);
+    line-height: 1.7;
+}
+
+.features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(79, 70, 229, 0.3);
+    transform: translateX(8px);
+}
+
+.featureIcon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.featureTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(248, 250, 252, 0.95);
+    margin-bottom: 0.25rem;
+}
+
+.featureDesc {
+    font-size: 0.875rem;
+    color: rgba(148, 163, 184, 0.8);
+}
+
+.rightPanel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    background: rgba(15, 23, 42, 0.8);
+}
+
+.authCard {
+    width: 100%;
+    max-width: 480px;
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 3rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.authHeader {
+    margin-bottom: 2rem;
+}
+
+.authTitle {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: rgba(248, 250, 252, 0.95);
+    margin-bottom: 0.5rem;
+}
+
+.authSubtitle {
+    font-size: 0.95rem;
+    color: rgba(148, 163, 184, 0.8);
+}
+
+.form {
+    margin-bottom: 2rem;
+}
+
+.inputGroup {
+    margin-bottom: 1.25rem;
+}
+
+.label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: rgba(203, 213, 225, 0.9);
+    margin-bottom: 0.5rem;
+}
+
+.input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: rgba(248, 250, 252, 0.95);
+    font-size: 0.95rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input::placeholder {
+    color: rgba(148, 163, 184, 0.5);
+}
+
+.input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(79, 70, 229, 0.5);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.submitBtn {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+.submitBtn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4);
+}
+
+.submitBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.divider {
+    position: relative;
+    text-align: center;
+    margin: 2rem 0;
+    color: rgba(148, 163, 184, 0.7);
+    font-size: 0.875rem;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.divider::before {
+    left: 0;
+}
+
+.divider::after {
+    right: 0;
+}
+
+.divider span {
+    background: rgba(30, 41, 59, 0.6);
+    padding: 0 1rem;
+    position: relative;
+}
+
+.testRoles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.roleBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: left;
+}
+
+.roleBtn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.roleBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.roleEmployee {
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #60a5fa;
+}
+
+.roleEmployee:hover:not(:disabled) {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.5);
+}
+
+.roleModerator {
+    border-color: rgba(139, 92, 246, 0.3);
+    color: #a78bfa;
+}
+
+.roleModerator:hover:not(:disabled) {
+    background: rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.5);
+}
+
+.roleExecutive {
+    border-color: rgba(236, 72, 153, 0.3);
+    color: #f472b6;
+}
+
+.roleExecutive:hover:not(:disabled) {
+    background: rgba(236, 72, 153, 0.1);
+    border-color: rgba(236, 72, 153, 0.5);
+}
+
+.roleAdmin {
+    border-color: rgba(234, 179, 8, 0.3);
+    color: #fbbf24;
+}
+
+.roleAdmin:hover:not(:disabled) {
+    background: rgba(234, 179, 8, 0.1);
+    border-color: rgba(234, 179, 8, 0.5);
+}
+
+.roleInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+}
+
+.roleName {
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.roleDesc {
+    font-size: 0.75rem;
+    color: rgba(148, 163, 184, 0.7);
+}
+
+.footer {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer p {
+    font-size: 0.875rem;
+    color: rgba(148, 163, 184, 0.8);
+}
+
+.link {
+    color: #a5b4fc;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.link:hover {
+    color: #c084fc;
+}
+
+@media (max-width: 1024px) {
+    .loginContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .leftPanel {
+        display: none;
+    }
+
+    .rightPanel {
+        padding: 2rem 1.5rem;
+    }
+
+    .authCard {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .testRoles {
+        grid-template-columns: 1fr;
+    }
+
+    .heroTitle {
+        font-size: 2rem;
+    }
+}

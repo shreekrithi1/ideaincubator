@@ -1,0 +1,102 @@
+// This is your Prisma schema file
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String
+  role      String   @default("INNOVATOR") // INNOVATOR, MODERATOR, EXECUTIVE
+  avatarUrl String?
+  createdAt DateTime @default(now())
+  
+  ideas     Idea[]
+  votes     Vote[]
+}
+
+model Idea {
+  id                 String   @id @default(uuid())
+  title              String
+  description        String
+
+  
+  // Module A: Intake Fields
+  category           String?  @default("General")
+  tShirtSize         String?
+  riskMitigation     String?
+  executiveSponsor   String?
+
+  status             String   @default("DRAFT")
+  jiraTicketId       String?
+  jiraStatus         String?
+  businessValueScore Int?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  
+  submitterId        String
+  submitter          User     @relation(fields: [submitterId], references: [id])
+  
+  votes              Vote[]
+  reviews            Review[]
+}
+
+model Vote {
+  id        String   @id @default(uuid())
+  ideaId    String
+  userId    String
+  createdAt DateTime @default(now())
+
+
+  idea Idea @relation(fields: [ideaId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([ideaId, userId])
+}
+
+
+
+model IntegrationConfig {
+  id        String   @id @default(uuid())
+  key       String   @unique // e.g., 'JIRA_CONFIG'
+  value     String   // JSON string
+  updatedAt DateTime @updatedAt
+}
+
+model Review {
+  id              String  @id @default(uuid())
+  ideaId          String
+  reviewerId      String
+  role            String 
+  comments        String?
+  decision        String
+  budgetAllocated Decimal?
+
+  idea Idea @relation(fields: [ideaId], references: [id])
+}
+
+model SystemAuditLog {
+  logId          String   @id @default(uuid()) @map("log_id")
+  entityType     String   @map("entity_type") // IDEA, REVIEW, etc.
+  entityId       String   @map("entity_id")
+  actorId        String   @map("actor_id")
+  actorEmail     String?  @map("actor_email")
+  actorRole      String?  @map("actor_role")
+  actionType     String   @map("action_type")
+  changesPayload String?  @map("changes_payload") // Stored as Stringified JSON in SQLite
+  ipAddress      String?  @map("ip_address")
+  userAgent      String?  @map("user_agent")
+  sessionId      String?  @map("session_id")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  @@index([actorId])
+  @@index([entityId])
+  @@index([actionType])
+  @@index([createdAt])
+  @@map("system_audit_logs")
+}

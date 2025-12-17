@@ -1,0 +1,123 @@
+.container {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.toolbar {
+    padding: 1rem;
+    background: #f1f5f9;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mergeBtn {
+    background: var(--secondary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th {
+    text-align: left;
+    padding: 1rem;
+    background: var(--background);
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+.row:hover {
+    background: #f8fafc;
+}
+
+.ideaTitle {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.ideaDesc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: #f1f5f9;
+    color: var(--text-muted);
+}
+
+.badge.DRAFT {
+    background: var(--color-ideation);
+    color: white;
+}
+
+.badge.MODERATED {
+    background: var(--color-curation);
+    color: white;
+}
+
+.badge.EXECUTIVE_REVIEW {
+    background: var(--color-strategy);
+    color: white;
+}
+
+.badge.IN_DEV {
+    background: var(--color-execution);
+    color: white;
+}
+
+.badge.G2M_READY {
+    background: var(--color-g2m);
+    color: white;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.iconBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 50%;
+    color: var(--text-muted);
+    transition: all 0.2s;
+}
+
+.iconBtn:hover {
+    background: var(--border);
+    color: var(--text-main);
+}
+
+.approveIcon {
+    color: var(--color-g2m);
+}
+
+.rejectIcon {
+    color: #ef4444;
+}

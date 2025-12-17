@@ -1,0 +1,254 @@
+.drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 480px;
+    background: white;
+    box-shadow: -10px 0 25px -5px rgba(0, 0, 0, 0.1);
+    border-left: 1px solid var(--border);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
+    font-family: sans-serif;
+}
+
+.header {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #f3f4f6;
+    background: #f9fafb;
+}
+
+.headerTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.idLabel {
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+.closeBtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #9ca3af;
+    line-height: 1;
+}
+
+.closeBtn:hover {
+    color: #ef4444;
+}
+
+.title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.25;
+}
+
+.content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.kpiGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.kpiCard {
+    padding: 1rem;
+    background: #f9fafb;
+    border-radius: 0.5rem;
+    border: 1px solid #f3f4f6;
+}
+
+.kpiLabel {
+    font-size: 0.75rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+}
+
+.kpiValue {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.sectionTitle {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.integrationBox {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.integrationRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.integrationRow:last-child {
+    border-bottom: none;
+}
+
+.integrationInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.integrationIcon {
+    width: 1.5rem;
+    /* adjusted for text placeholder */
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f3f4f6;
+    font-weight: 700;
+    color: #6b7280;
+    border-radius: 4px;
+    font-size: 0.75rem;
+}
+
+.integrationName {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #111827;
+}
+
+.integrationMeta {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.link {
+    color: #2563eb;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: #1e40af;
+}
+
+.statusActive {
+    color: #16a34a;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: #f0fdf4;
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.25rem;
+}
+
+
+/* Audit Trail */
+.timeline {
+    position: relative;
+    border-left: 2px solid #e5e7eb;
+    margin-left: 0.5rem;
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.timelineItem {
+    position: relative;
+}
+
+.timelineDot {
+    position: absolute;
+    left: -21px;
+    /* -1rem + -1px border width approx */
+    top: 0.25rem;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.dotSuccess {
+    background: #22c55e;
+    box-shadow: 0 0 0 1px #e5e7eb;
+}
+
+.dotGray {
+    background: #d1d5db;
+}
+
+.logTitle {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #111827;
+}
+
+.logMeta {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.125rem;
+}
+
+.logTime {
+    font-family: monospace;
+    font-size: 0.65rem;
+    color: #9ca3af;
+    margin-top: 0.25rem;
+}
+
+
+.footer {
+    padding: 1rem;
+    border-top: 1px solid #e5e7eb;
+    background: #f9fafb;
+}
+
+.manageBtn {
+    width: 100%;
+    padding: 0.625rem;
+    background: #111827;
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.manageBtn:hover {
+    background: black;
+}
