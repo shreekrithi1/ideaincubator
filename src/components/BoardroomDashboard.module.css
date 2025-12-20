@@ -19,20 +19,26 @@
 .grid {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
     overflow: hidden;
-    transition: box-shadow 0.2s;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.card.active {
-    box-shadow: var(--shadow-md);
-    border-color: var(--primary);
+.card:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.activeCard {
+    border-color: #7c3aed !important;
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.15) !important;
 }
 
 .cardHeader {
@@ -41,11 +47,36 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    background: #fdfdfd;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: all 0.2s;
 }
 
 .cardHeader:hover {
-    background: #f8fafc;
+    background: linear-gradient(135deg, #5a67d8 0%, #6b3fa0 100%);
+}
+
+.statusBadge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+    background: rgba(255, 255, 255, 0.25);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.score {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .headerInfo {
@@ -61,6 +92,21 @@
     background: #f1f5f9;
     padding: 0.25rem 0.5rem;
     border-radius: var(--radius-sm);
+}
+
+.cardTitle {
+    padding: 1.5rem 1.5rem 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1.4;
+}
+
+.cardDesc {
+    padding: 0 1.5rem 1.5rem;
+    color: #64748b;
+    line-height: 1.6;
+    font-size: 0.95rem;
 }
 
 .content {
@@ -114,25 +160,46 @@
     font-weight: 600;
 }
 
+.expandedContent {
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-top: 2px solid #e2e8f0;
+}
+
 .swotGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+    margin-bottom: 1rem;
 }
 
 .swotBox {
-    padding: 1rem;
-    border-radius: var(--radius-md);
-    border: 1px solid currentColor;
+    padding: 1.25rem;
+    border-radius: 10px;
+    border: 2px solid;
 }
 
-.swotBox[data-type="strengths"] {
+.swotBox h4 {
+    margin: 0 0 0.75rem 0;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+
+.swotBox p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.strength {
     color: #15803d;
     background: #f0fdf4;
-    border-color: #bbf7d0;
+    border-color: #86efac;
 }
 
-.swotBox[data-type="weaknesses"] {
+.weakness {
     color: #b45309;
     background: #fffbeb;
     border-color: #fde68a;
@@ -188,22 +255,30 @@
     gap: 1rem;
     margin-top: 1rem;
     padding-top: 1rem;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid #e2e8f0;
 }
 
 .approveBtn {
     flex: 2;
-    background: var(--color-g2m);
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
     color: white;
     border: none;
-    padding: 1rem;
-    border-radius: var(--radius-md);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.approveBtn:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
 }
 
 .rejectBtn {
@@ -211,16 +286,22 @@
     background: white;
     color: #ef4444;
     border: 2px solid #ef4444;
-    padding: 1rem;
-    border-radius: var(--radius-md);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
-    display: flex;
-    align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    transition: all 0.2s;
+}
+
+.rejectBtn:hover {
+    background: #fef2f2;
+    border-color: #dc2626;
+    color: #dc2626;
+    transform: translateY(-2px);
 }
 
 .emptyState {
@@ -251,12 +332,12 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background: #f0f9ff;
+    margin: 0 1.5rem 1.5rem;
+    padding: 0.75rem 1.25rem;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
     color: #0369a1;
-    border: 1px solid #bae6fd;
-    border-radius: 0.5rem;
+    border: 2px solid #bae6fd;
+    border-radius: 8px;
     font-size: 0.875rem;
     font-weight: 600;
     cursor: pointer;
@@ -265,6 +346,33 @@
 }
 
 .analyzeTrigger:hover {
-    background: #e0f2fe;
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
     border-color: #7dd3fc;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(3, 105, 161, 0.2);
+}
+
+.aiThinking {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 2rem;
+    color: #7c3aed;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.spin {
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { User, Shield, Briefcase, Zap, Lightbulb, ArrowRight } from 'lucide-react';
 import styles from './page.module.css';
 import { loginUser } from '@/app/auth-actions';
+import Starfield from '@/components/Starfield';
 
 export default function LoginPage() {
     const [loading, setLoading] = useState(false);
@@ -68,10 +69,17 @@ export default function LoginPage() {
             </div>
 
             <div className={styles.rightPanel}>
+                <Starfield />
                 <div className={styles.authCard}>
                     <div className={styles.authHeader}>
-                        <h2 className={styles.authTitle}>Welcome Back</h2>
-                        <p className={styles.authSubtitle}>Sign in to access your innovation workspace</p>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                            <Shield className="text-red-500" size={24} color="#ef4444" />
+                            <h2 className={styles.authTitle} style={{ marginBottom: 0 }}>Member Only Access</h2>
+                        </div>
+                        <p className={styles.authSubtitle}>
+                            <span style={{ color: '#ef4444', fontWeight: 'bold', display: 'block', marginBottom: '0.25rem' }}>HARD STOP.</span>
+                            Authorized for Pragna & Athena.
+                        </p>
                     </div>
 
                     <form className={styles.form} onSubmit={handleSubmit}>

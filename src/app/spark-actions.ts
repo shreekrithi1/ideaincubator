@@ -28,6 +28,7 @@ export async function submitIdea(formData: FormData) {
     const tShirtSize = formData.get('tShirtSize') as string;
     const riskMitigation = formData.get('riskMitigation') as string;
     const executiveSponsor = formData.get('executiveSponsor') as string;
+    const quarterlyGoalId = formData.get('quarterlyGoalId') as string | null;
 
     // 1. Vector Search for Duplicates (Simulated)
     const isDuplicate = await checkDuplicates(title);
@@ -51,7 +52,8 @@ export async function submitIdea(formData: FormData) {
             tShirtSize: tShirtSize || 'M',
             riskMitigation: riskMitigation || null,
             executiveSponsor: executiveSponsor || null,
-            status: 'SUBMITTED',
+            quarterlyGoalId: quarterlyGoalId || null,
+            status: 'PENDING_MODERATION',
             businessValueScore: Math.floor(Math.random() * 100), // Placeholder AI score
         }
     });
@@ -70,6 +72,7 @@ export async function updateIdea(id: string, formData: FormData) {
     const tShirtSize = formData.get('tShirtSize') as string;
     const riskMitigation = formData.get('riskMitigation') as string;
     const executiveSponsor = formData.get('executiveSponsor') as string;
+    const quarterlyGoalId = formData.get('quarterlyGoalId') as string | null;
 
     try {
         await prisma.idea.update({
@@ -81,6 +84,7 @@ export async function updateIdea(id: string, formData: FormData) {
                 tShirtSize,
                 riskMitigation: riskMitigation || null,
                 executiveSponsor: executiveSponsor || null,
+                quarterlyGoalId: quarterlyGoalId || null,
             }
         });
         revalidatePath('/');

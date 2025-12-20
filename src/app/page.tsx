@@ -9,6 +9,32 @@ import { redirect } from 'next/navigation';
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
+  const currentUser = await getCurrentUser();
+
+  if (!currentUser) {
+    redirect('/login');
+  }
+
+  // Get current quarter and year
+  const currentDate = new Date();
+  const currentQuarter = Math.ceil((currentDate.getMonth() + 1) / 3);
+  const currentYear = currentDate.getFullYear();
+
+  // Fetch current quarterly goals
+  const currentGoals = await prisma.quarterlyGoal.findMany({
+    where: {
+      quarter: currentQuarter,
+      year: currentYear,
+      status: 'ACTIVE'
+    },
+    include: {
+      contributions: {
+        orderBy: { createdAt: 'desc' }
+      }
+    },
+    orderBy: { createdAt: 'desc' }
+  });
+
   const ideas = await prisma.idea.findMany({
     orderBy: { createdAt: 'desc' },
     include: {
@@ -17,15 +43,16 @@ export default async function Home() {
     }
   });
 
-  const [metrics, trending, currentUser] = await Promise.all([
-    getDashboardMetrics(),
-    getTrendingIdeas(),
-    getCurrentUser()
-  ]);
+  // Filter user's active ideas
+  const userActiveIdeas = ideas.filter(idea =>
+    idea.submitterId === currentUser.id &&
+    ['PENDING_MODERATION', 'EXECUTIVE_REVIEW', 'IN_DEV', 'SUBMITTED'].includes(idea.status)
+  );
 
-  if (!currentUser) {
-    redirect('/login');
-  }
+  const [metrics, trending] = await Promise.all([
+    getDashboardMetrics(),
+    getTrendingIdeas()
+  ]);
 
   // Serialization
   const serialize = (items: any[]) => items.map(idea => ({
@@ -38,12 +65,26 @@ export default async function Home() {
     submitterName: idea.submitter?.name || 'Anonymous'
   }));
 
+  const serializeGoals = (goals: any[]) => goals.map(goal => ({
+    ...goal,
+    createdAt: goal.createdAt.toISOString(),
+    updatedAt: goal.updatedAt.toISOString(),
+    deadline: goal.deadline ? goal.deadline.toISOString() : null,
+    completedAt: goal.completedAt ? goal.completedAt.toISOString() : null,
+    contributions: goal.contributions.map((c: any) => ({
+      ...c,
+      createdAt: c.createdAt.toISOString()
+    }))
+  }));
+
   return (
     <HomeClient
       ideas={serialize(ideas)}
       metrics={metrics}
       trending={serialize(trending)}
       currentUser={currentUser}
+      currentGoals={serializeGoals(currentGoals)}
+      userActiveIdeas={serialize(userActiveIdeas)}
     />
   );
 }

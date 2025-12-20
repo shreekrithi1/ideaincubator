@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Layers, BarChart, Settings, Activity, LogOut, Lightbulb } from 'lucide-react';
+import { Layers, BarChart, Settings, Activity, LogOut, Lightbulb, Target } from 'lucide-react';
 import UserSwitcher from './UserSwitcher';
 import styles from './Navigation.module.css';
 import ThemeToggle from './ThemeToggle';
@@ -28,6 +28,10 @@ export default function Navigation({ currentUser }: { currentUser?: any }) {
                     <Link href="/" className={styles.link}>
                         <Layers size={18} />
                         <span>Ideas</span>
+                    </Link>
+                    <Link href="/goals" className={styles.link}>
+                        <Target size={18} />
+                        <span>Goals</span>
                     </Link>
                     {(role === 'MODERATOR' || role === 'ADMIN') && (
                         <Link href="/moderator" className={styles.link}>

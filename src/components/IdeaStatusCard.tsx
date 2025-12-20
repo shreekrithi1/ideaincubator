@@ -7,7 +7,6 @@ import styles from './IdeaStatusCard.module.css';
 // Extended type to include potential joined fields if needed, 
 // but for now we map from standard Prisma Idea type
 interface IdeaWithDetails extends Idea {
-    category?: string;
     submitterAvatar?: string;
     approverAvatar?: string;
 }

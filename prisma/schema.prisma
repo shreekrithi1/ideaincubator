@@ -42,8 +42,14 @@ model Idea {
   submitterId        String
   submitter          User     @relation(fields: [submitterId], references: [id])
   
+  // Link to Quarterly Goal
+  quarterlyGoalId    String?
+  quarterlyGoal      QuarterlyGoal? @relation(fields: [quarterlyGoalId], references: [id])
+  
   votes              Vote[]
   reviews            Review[]
+  
+  @@index([quarterlyGoalId])
 }
 
 model Vote {
@@ -99,4 +105,45 @@ model SystemAuditLog {
   @@index([actionType])
   @@index([createdAt])
   @@map("system_audit_logs")
+}
+
+model QuarterlyGoal {
+  id              String   @id @default(uuid())
+  title           String
+  description     String
+  targetMetric    String   // e.g., "10 ideas approved", "5 JIRA stories created"
+  currentProgress Int      @default(0)
+  targetValue     Int      // Numeric target to achieve
+  quarter         Int      // 1, 2, 3, or 4
+  year            Int
+  status          String   @default("ACTIVE") // ACTIVE, COMPLETED, MISSED
+  category        String?  // e.g., "Innovation", "Efficiency", "Revenue"
+  deadline        DateTime? // Deadline for the goal
+  createdById     String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  completedAt     DateTime?
+
+  contributions   GoalContribution[]
+  ideas           Idea[]
+
+  @@index([createdById])
+  @@index([quarter, year])
+  @@index([status])
+}
+
+model GoalContribution {
+  id              String   @id @default(uuid())
+  goalId          String
+  contributorId   String
+  contributorName String
+  contributorRole String
+  amount          Int      // Amount contributed to the goal
+  notes           String?  // Optional notes about the contribution
+  createdAt       DateTime @default(now())
+
+  goal            QuarterlyGoal @relation(fields: [goalId], references: [id], onDelete: Cascade)
+
+  @@index([goalId])
+  @@index([contributorId])
 }

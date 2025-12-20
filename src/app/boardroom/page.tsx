@@ -1,7 +1,7 @@
 import { prisma } from '@/lib/prisma';
 import styles from './page.module.css';
 import Navigation from '@/components/Navigation';
-import BoardroomDashboard from '@/components/BoardroomDashboard';
+import BoardroomClient from '@/components/BoardroomClient';
 
 export const dynamic = 'force-dynamic';
 
@@ -27,6 +27,19 @@ export default async function BoardroomPage() {
         orderBy: { businessValueScore: 'desc' }
     });
 
+    const goals = await prisma.quarterlyGoal.findMany({
+        include: {
+            contributions: {
+                orderBy: { createdAt: 'desc' }
+            }
+        },
+        orderBy: [
+            { year: 'desc' },
+            { quarter: 'desc' },
+            { createdAt: 'desc' }
+        ]
+    });
+
     return (
         <main>
             <Navigation currentUser={user} />
@@ -42,14 +55,15 @@ export default async function BoardroomPage() {
                             <div className={styles.statLabel}>Pending Review</div>
                         </div>
                         <div className={styles.statCard}>
-                            <div className={styles.statValue}>{ideas.filter(i => i.businessValueScore >= 80).length}</div>
+                            <div className={styles.statValue}>{ideas.filter(i => (i.businessValueScore ?? 0) >= 80).length}</div>
                             <div className={styles.statLabel}>High Priority</div>
                         </div>
                     </div>
                 </div>
 
-                <BoardroomDashboard ideas={ideas} />
+                <BoardroomClient ideas={ideas} goals={goals} currentUser={user} />
             </div>
         </main>
     );
 }
+
