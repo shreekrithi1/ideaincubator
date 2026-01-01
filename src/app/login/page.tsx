@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { User, Shield, Briefcase, Zap, Lightbulb, ArrowRight } from 'lucide-react';
+import { User, Shield, Briefcase, Zap, Lightbulb, ArrowRight, Activity, Eye, ScanFace } from 'lucide-react';
 import styles from './page.module.css';
 import { loginUser } from '@/app/auth-actions';
 import Starfield from '@/components/Starfield';
@@ -31,37 +31,51 @@ export default function LoginPage() {
         <div className={styles.loginContainer}>
             <div className={styles.leftPanel}>
                 <div className={styles.brandingSection}>
-                    <div className={styles.heroContent}>
-                        <div className={styles.iconWrapper}>
-                            <Lightbulb size={48} className={styles.heroIcon} />
+                    <div className={styles.brandingContent}>
+                        <div className={styles.logoWrapper}>
+                            <Lightbulb size={48} className={styles.logoIcon} />
                         </div>
-                        <h1 className={styles.heroTitle}>Idea Incubator</h1>
-                        <span className={styles.demoBadge}>DEMO</span>
-                        <p className={styles.heroSubtitle}>
-                            Transform innovative concepts into reality. Where history's giants inspire tomorrow's pioneers.
-                        </p>
-                    </div>
 
-                    <div className={styles.features}>
-                        <div className={styles.feature}>
-                            <div className={styles.featureIcon}>✨</div>
-                            <div>
-                                <div className={styles.featureTitle}>Submit Ideas</div>
-                                <div className={styles.featureDesc}>Share your innovative concepts</div>
-                            </div>
+                        <h1 className={styles.title}>Project Athena</h1>
+
+                        <div className={styles.badgeWrapper}>
+                            <span className={styles.betaBadge}>CLASSIFIED</span>
                         </div>
-                        <div className={styles.feature}>
-                            <div className={styles.featureIcon}>🚀</div>
-                            <div>
-                                <div className={styles.featureTitle}>Collaborate</div>
-                                <div className={styles.featureDesc}>Work with peers and experts</div>
+
+                        <p className={styles.description}>
+                            Advanced surveillance and behavioral analysis system.
+                            Restricted to authorized personnel only.
+                        </p>
+
+                        <div className={styles.featureGrid}>
+                            <div className={styles.featureCard}>
+                                <div className={styles.featureIcon}>
+                                    <Activity size={20} />
+                                </div>
+                                <div className={styles.featureText}>
+                                    <h3>Motion Detection</h3>
+                                    <p>High-sensitivity kinetic tracking</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className={styles.feature}>
-                            <div className={styles.featureIcon}>🎯</div>
-                            <div>
-                                <div className={styles.featureTitle}>Track Progress</div>
-                                <div className={styles.featureDesc}>Watch ideas come to life</div>
+
+                            <div className={styles.featureCard}>
+                                <div className={styles.featureIcon}>
+                                    <ScanFace size={20} />
+                                </div>
+                                <div className={styles.featureText}>
+                                    <h3>Facial Realism</h3>
+                                    <p>Photorealistic identity reconstruction</p>
+                                </div>
+                            </div>
+
+                            <div className={styles.featureCard}>
+                                <div className={styles.featureIcon}>
+                                    <Zap size={20} />
+                                </div>
+                                <div className={styles.featureText}>
+                                    <h3>Neural Processing</h3>
+                                    <p>Real-time threat assessment</p>
+                                </div>
                             </div>
                         </div>
                     </div>
